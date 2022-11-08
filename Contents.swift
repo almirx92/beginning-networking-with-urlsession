@@ -5,9 +5,14 @@ var greeting = "Hello, playground"
 
 print(greeting)
 
-Task {
-    print("Doing some work on task 1")
-    print("Second Commit Test")
-}
 
-print("Doing some work on the main thread")
+    let task = Task {
+        print("This is first.")
+        let sum = (1...10000).reduce(0, +)
+        try Task.checkCancellation()
+        print("This is second : 1 + 2 + 3 + 4 + ... 100 = \(sum)")
+    }
+
+
+print("This is last")
+task.cancel()
